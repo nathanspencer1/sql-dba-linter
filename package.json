@@ -1,0 +1,72 @@
+{
+  "name": "sql-dba-linter",
+  "displayName": "SQL DBA Linter",
+  "description": "Validates SQL scripts against common DBA rules and best practices",
+  "version": "0.0.1",
+  "publisher": "sql-dba-linter",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:sql"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sqlDbaLinter.validate",
+        "title": "SQL DBA: Validate Current File"
+      }
+    ],
+    "configuration": {
+      "title": "SQL DBA Linter",
+      "properties": {
+        "sqlDbaLinter.requireUseStatement": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require USE {DATABASE} statement at the beginning of scripts"
+        },
+        "sqlDbaLinter.requireThreePartNaming": {
+          "type": "boolean",
+          "default": true,
+          "description": "Require three-part naming convention {DATABASE}.{SCHEMA}.{TABLE}"
+        },
+        "sqlDbaLinter.disallowOrOperator": {
+          "type": "boolean",
+          "default": true,
+          "description": "Disallow OR operators in queries"
+        },
+        "sqlDbaLinter.disallowOrderBy": {
+          "type": "boolean",
+          "default": true,
+          "description": "Disallow ORDER BY clauses"
+        },
+        "sqlDbaLinter.expectedDatabase": {
+          "type": "string",
+          "default": "",
+          "description": "Expected database name for USE statement (leave empty to allow any)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.40.0",
+    "typescript": "^5.0.0",
+    "@vscode/vsce": "^2.19.0"
+  }
+}
