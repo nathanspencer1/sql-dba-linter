@@ -2,6 +2,8 @@
 
 A VSCode extension that validates SQL scripts against common DBA rules and best practices.
 
+![](demo.png)
+
 ## Features
 
 - **USE Statement Validation**: Ensures scripts begin with a `USE {DATABASE}` statement

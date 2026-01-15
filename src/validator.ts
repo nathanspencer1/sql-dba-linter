@@ -195,6 +195,12 @@ export class SqlValidator {
 
 			let match;
 			while ((match = orRegex.exec(line)) !== null) {
+				// check if there is a "--" before the match in the line
+				const commentIndex = line.indexOf("--");
+				if (commentIndex !== -1 && match.index > commentIndex) {
+					continue;
+				}
+
 				const range = new vscode.Range(i, match.index, i, match.index + match[0].length);
 				const diagnostic = new vscode.Diagnostic(
 					range,
@@ -237,6 +243,12 @@ export class SqlValidator {
 
 			let match;
 			while ((match = orderByRegex.exec(line)) !== null) {
+				// check if there is a "--" before the match in the line
+				const commentIndex = line.indexOf("--");
+				if (commentIndex !== -1 && match.index > commentIndex) {
+					continue;
+				}
+
 				const range = new vscode.Range(i, match.index, i, match.index + match[0].length);
 				const diagnostic = new vscode.Diagnostic(range, "ORDER BY clause is not allowed", vscode.DiagnosticSeverity.Error);
 				diagnostic.source = "SQL DBA Linter";
@@ -272,6 +284,12 @@ export class SqlValidator {
 			}
 			let match;
 			while ((match = countStarRegex.exec(line)) !== null) {
+				// check if there is a "--" before the match in the line
+				const commentIndex = line.indexOf("--");
+				if (commentIndex !== -1 && match.index > commentIndex) {
+					continue;
+				}
+
 				const range = new vscode.Range(i, match.index, i, match.index + match[0].length);
 				const diagnostic = new vscode.Diagnostic(range, "COUNT(*) is not allowed. Specify a column name instead.", vscode.DiagnosticSeverity.Error);
 				diagnostic.source = "SQL DBA Linter";
