@@ -19,7 +19,7 @@ Configure the linter in your VSCode settings:
 - `sqlDbaLinter.requireThreePartNaming`: Require three-part naming for tables (default: true)
 - `sqlDbaLinter.disallowOrOperator`: Disallow OR operators (default: true)
 - `sqlDbaLinter.disallowOrderBy`: Disallow ORDER BY clauses (default: true)
-- `sqlDbaLinter.expectedDatabase`: Expected database name for USE statement (optional)
+- `sqlDbaLinter.disallowCountStar`: Disallow COUNT(*) usage in queries (default: true)
 
 ## Installation
 
@@ -40,3 +40,53 @@ Open any `.sql` file and the linter will automatically validate it. Errors will 
 - In the Problems panel (View → Problems)
 - As squiggles in the editor
 - Navigate with F8 (next) / Shift+F8 (previous)
+
+## Testing
+
+### Running Tests
+
+Run the test suite using:
+
+```bash
+npm test
+```
+
+This will:
+1. Compile the TypeScript code
+2. Run ESLint
+3. Execute all unit tests in a VS Code test environment
+
+### Running Tests in Watch Mode
+
+For development, you can run tests in watch mode:
+
+```bash
+npm run watch
+```
+
+Then press F5 in VS Code to launch the test runner.
+
+### Test Structure
+
+Tests are located in `src/test/suite/` and follow the naming convention `*.test.ts`. The test suite uses:
+- **Mocha** - Test framework
+- **VS Code Test API** - For testing extension code in a real VS Code environment
+
+### Writing New Tests
+
+1. Create a new file in `src/test/suite/` with the suffix `.test.ts`
+2. Import the necessary modules and the code to test
+3. Use Mocha's `suite()` and `test()` functions to organize tests
+4. Run `npm test` to execute your tests
+
+Example:
+```typescript
+import * as assert from 'assert';
+import * as vscode from 'vscode';
+
+suite('My Test Suite', () => {
+  test('My test case', () => {
+    assert.strictEqual(1 + 1, 2);
+  });
+});
+```

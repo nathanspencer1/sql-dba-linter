@@ -60,15 +60,7 @@ Customize rules in VSCode settings (File → Preferences → Settings → Search
   "sqlDbaLinter.requireThreePartNaming": true,
   "sqlDbaLinter.disallowOrOperator": true,
   "sqlDbaLinter.disallowOrderBy": true,
-  "sqlDbaLinter.expectedDatabase": ""
-}
-```
-
-### Expected Database
-Set a specific database name to enforce:
-```json
-{
-  "sqlDbaLinter.expectedDatabase": "MyProductionDB"
+  "sqlDbaLinter.disallowCountStar": true
 }
 ```
 

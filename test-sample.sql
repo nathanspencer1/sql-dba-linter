@@ -1,4 +1,7 @@
--- Example SQL file with DBA violations for testing
+/*
+Example SQL file with DBA violations for testing
+*/
+USE MyDatabase
 
 -- VIOLATION: Missing USE statement at the beginning
 

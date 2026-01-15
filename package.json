@@ -2,8 +2,13 @@
   "name": "sql-dba-linter",
   "displayName": "SQL DBA Linter",
   "description": "Validates SQL scripts against common DBA rules and best practices",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "publisher": "nathanspencer1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nathanspencer1/sql-dba-linter"
+  },
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -44,10 +49,10 @@
           "default": true,
           "description": "Disallow ORDER BY clauses"
         },
-        "sqlDbaLinter.expectedDatabase": {
-          "type": "string",
-          "default": "",
-          "description": "Expected database name for USE statement (leave empty to allow any)"
+        "sqlDbaLinter.disallowCountStar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Disallow COUNT(*) usage in queries"
         }
       }
     }
@@ -56,16 +61,22 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
     "lint": "eslint src --ext ts",
     "package": "vsce package"
   },
   "devDependencies": {
     "@types/node": "^18.x",
     "@types/vscode": "^1.75.0",
+    "@types/mocha": "^10.0.0",
+    "@types/glob": "^8.1.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "@vscode/test-electron": "^2.3.0",
     "eslint": "^8.40.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
     "typescript": "^5.0.0",
     "@vscode/vsce": "^2.19.0"
   }
