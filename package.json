@@ -3,7 +3,7 @@
   "displayName": "SQL DBA Linter",
   "description": "Validates SQL scripts against common DBA rules and best practices",
   "version": "0.0.1",
-  "publisher": "sql-dba-linter",
+  "publisher": "nathanspencer1",
   "engines": {
     "vscode": "^1.75.0"
   },
